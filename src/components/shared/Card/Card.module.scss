@@ -1,0 +1,15 @@
+@import '../../../variables';
+
+.card {
+  display: inline-block;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px $box-shadow;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: .5s all;
+
+  &:hover {
+    box-shadow: 0 0 16px $box-shadow-hover;
+  }
+}

@@ -1,0 +1,22 @@
+@import '../../../../variables';
+
+.input {
+  border: 0;
+  color: $input-default-color;
+  transition: .5s all;
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: .05rem;
+  outline: none;
+
+  &:hover {
+    color: $input-hover-color;
+    border-color: $input-hover-color;
+  }
+
+  &--underline {
+    border: none;
+    border-bottom: 1px solid $input-default-color;
+    padding-bottom: .3rem;
+  }
+}
