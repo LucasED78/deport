@@ -13,6 +13,7 @@ class TeamMapper implements Mapper<Team> {
       badge: data.strTeamBadge,
       logo: data.strTeamLogo,
       leagues: this._mapLeagues(data),
+      location: data.strStadiumLocation,
       stadium: data.strStadium,
       stadiumThumbnail: data.strStadiumThumb,
       description: data.strDescriptionEN,
@@ -25,10 +26,10 @@ class TeamMapper implements Mapper<Team> {
   }
 
   _mapLeagues(data: any): League[] {
-    return [...Array(this.parserLimit)].filter((_, index) => {
+    return [...Array(this.parserLimit)].map((_, index) => {
       const realIndex = index === 0 ? '' : index
       const id = data[`idLeague${realIndex}`]
-      const name = data[`idLeague${realIndex}`]
+      const name = data[`strLeague${realIndex}`]
 
       if (id && name) {
         return {
@@ -36,7 +37,9 @@ class TeamMapper implements Mapper<Team> {
           name
         } as League
       }
-    })
+
+      return null
+    }).filter(league => league !== null) as League[]
   }
 }
 

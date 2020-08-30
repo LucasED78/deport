@@ -2,16 +2,14 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  useRouteMatch
 } from 'react-router-dom'
 
 import AppContainer from './components/containers/AppContainer/AppContainer';
-import teamStore from './stores/team/store';
+import { teamStore } from './stores/team/store';
+import stores from './stores/index';
 import TeamContainer from './components/containers/TeamContainer/TeamContainer';
-
 
 const App = () => {
   return (
@@ -23,7 +21,9 @@ const App = () => {
       </Route>
 
       <Route path="/:teamId">
-        <TeamContainer />
+        <Provider store={stores}>
+          <TeamContainer />
+        </Provider>
       </Route>
     </Switch>
   )
