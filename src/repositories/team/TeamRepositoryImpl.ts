@@ -10,7 +10,9 @@ class TeamRepositoryImpl implements TeamRepository {
     try {
       const response = await api.get(`/searchteams.php?t=${name}`)
 
-      const data = response.data['teams'];
+      const { data: json } = response;
+
+      const data = json['teams']
 
       return data.map((team: any) => {
         return this.mapper.map(team)
@@ -19,6 +21,22 @@ class TeamRepositoryImpl implements TeamRepository {
       console.log(e);
 
       return ''
+    }
+  }
+
+  async getById(id: string): Promise<Team | string> {
+    try {
+      const response = await api.get(`/lookupteam.php?id=${id}`);
+
+      const { data: json } = response;
+
+      const [ data ] = json['teams']
+
+      return this.mapper.map(data)
+    } catch(e) {
+      console.error(e);
+
+      return '';
     }
   }
 }
