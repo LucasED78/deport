@@ -13,7 +13,7 @@ class PlayerMapper implements Mapper<Player> {
       gender: data.strGender,
       height: data.strHeight,
       weight: data.strWeight,
-      loved: +data.intLover,
+      loved: +data.intLoved,
       nationality: data.strNationality,
       position: data.strPosition,
       number: +data.strNumber,
