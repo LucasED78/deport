@@ -15,6 +15,7 @@ const TeamCard = (props: TeamCardProps) => {
     <Card onCardClicked={props.onCardClicked}>
       <div className={styles.team__card}>
         <img
+          alt="this is a team logo"
           className={styles['team__card-image']} 
           src={props.logo} />
 

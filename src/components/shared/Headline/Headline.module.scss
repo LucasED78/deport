@@ -1,0 +1,22 @@
+@import '../../../variables';
+
+.title {
+  font-size: $headline-1;
+  margin: 5px 0;
+}
+
+.title--headline1 {
+  font-size: $headline-1;
+}
+
+.title--headline2 {
+  font-size: $headline-2;
+}
+
+.title--headline3 {
+  font-size: $headline-3;
+}
+
+.title--headline4 {
+  font-size: $headline-4;
+}

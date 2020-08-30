@@ -3,10 +3,10 @@ import React, { ReactNode } from 'react';
 import styles from './Shimmer.module.scss';
 
 export type ShimmerProps = {
-  children: ReactNode
-  width?: number
-  height?: number
-  radius?: number
+  children?: ReactNode
+  width?: number | string
+  height?: number | string
+  radius?: number | string
   disabled?: boolean
 }
 
