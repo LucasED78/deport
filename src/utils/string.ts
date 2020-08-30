@@ -1,5 +1,5 @@
 String.prototype.limit = function(quantity: number): string {
-  if (this.length == quantity) {
+  if (this.length === quantity) {
     return this.toString();
   }
 
