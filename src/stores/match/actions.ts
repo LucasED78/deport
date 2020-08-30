@@ -1,0 +1,3 @@
+export const MATCH_LOADING = 'deport/match/MATCH_LOADING';
+export const MATCH_FETCHED_WITH_SUCCESS = 'deport/match/MATCH_FETCHED_WITH_SUCCESS';
+export const MATCH_FETCHED_WITH_ERROR = 'deport/match/MATCH_FETCHED_WITH_ERROR'
