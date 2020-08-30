@@ -11,6 +11,8 @@ import { fetchMatch } from '../../../stores/match/store';
 import { MatchState} from '../../../stores/match/types';
 
 import TeamDetail from '../../team/TeamDetail/TeamDetail';
+import { fetchLovedPlayer } from '../../../stores/player/store';
+import { PlayerState } from '../../../stores/player/types';
 
 const TeamContainer = (props: any) => {  
   const { teamId } = useParams();
@@ -20,25 +22,30 @@ const TeamContainer = (props: any) => {
     fetchTeamById(dispatch, teamId)
 
     fetchMatch(dispatch, teamId)
+
+    fetchLovedPlayer(dispatch, teamId)
   }, [])
 
-  const { team: teamState, match: matchState } : { team: TeamState, match: MatchState } = props;
+  const { team: teamState, match: matchState, player: playerState } 
+    : { team: TeamState, match: MatchState, player: PlayerState } = props;
 
   return (
     <Container 
       alignItems="flex-start"
     >
       <TeamDetail 
-        team={teamState} 
-        match={matchState} />
+        teamState={teamState} 
+        matchState={matchState}
+        playerState={playerState} />
     </Container>
   )
 }
 
-const mapStateToProps = (state: CombinedState<{ store: TeamState, match: MatchState }>) => {
+const mapStateToProps = (state: CombinedState<{ store: TeamState, match: MatchState, player: PlayerState }>) => {
   return {
     team: state.store,
-    match: state.match
+    match: state.match,
+    player: state.player
   }
 };
 

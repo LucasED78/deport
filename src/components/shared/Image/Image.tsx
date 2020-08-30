@@ -3,17 +3,18 @@ import React, { MouseEvent } from 'react';
 export type LogoProps = {
   imageUrl: string;
   width?: string;
+  alt?: string;
   onImageClick?: ((event: MouseEvent<HTMLImageElement>) => void)
 }
 
-const Logo = (props: LogoProps) => {
+const Image = (props: LogoProps) => {
   return (
     <img 
       onClick={props.onImageClick}
       style={{ width: props.width }}
       src={props.imageUrl} 
-      alt="this is the team logo" />
+      alt={props.alt} />
   )
 }
 
-export default Logo;
+export default Image;

@@ -1,0 +1,32 @@
+@import '../../../variables';
+
+.button {
+  padding: 10px 20px;
+  border: 1px solid $lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $lightblack;
+  font-size: $headline-4;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .5s;
+  outline: none;
+  
+  &--bordered {
+    background-color: transparent;
+
+    &:hover {
+      color: $mainblack;
+      border-color: $mainblack;
+    }
+  }
+
+  &--success {
+
+  }
+
+  &--danger {
+    
+  }
+}

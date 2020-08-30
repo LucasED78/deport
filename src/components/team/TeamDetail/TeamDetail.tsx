@@ -16,14 +16,19 @@ import Spacer from '../../shared/Spacer/Spacer';
 import HeadToHead from '../../shared/HeadToHead/HeadToHead/HeadToHead';
 import HeadToHeadShimmer from '../../shared/HeadToHead/HeadToHeadShimmer/HeadToHeadShimmer';
 import TeamDetailShimmer from '../TeamDetailShimmer/TeamDetailShimmer';
+import { PlayerState } from '../../../stores/player/types';
+import SquadCard from '../../squad/SquadCard/SquadCard';
+import SquadCardShimmer from '../../squad/SquadCardShimmer/SquadCardShimmer';
 
 export type TeamDetailProps = {
-  team: TeamState,
-  match: MatchState
+  teamState: TeamState,
+  matchState: MatchState,
+  playerState: PlayerState
 }
 
 const TeamDetail = (props: TeamDetailProps) => {
-  const { team: teamState, match: matchState }: { team: TeamState, match: MatchState } = props;
+  const { playerState, teamState, matchState } = props
+
   const teamDetail = teamState.teamDetail as Team;
   const match = matchState.match
 
@@ -44,15 +49,19 @@ const TeamDetail = (props: TeamDetailProps) => {
 
           { teamState.loading && <TeamDetailShimmer />}
 
-          { match && 
           <HeadToHead 
-            homeLogo={match.homeTeamLogo ?? teamDetail.badge}
-            awayLogo={match.awayTeamLogo ?? teamDetail.badge}
-            score={`${match.homeScore}x${match.awayScore}`}
+            homeLogo={match?.homeTeamLogo ?? teamDetail.badge}
+            awayLogo={match?.awayTeamLogo ?? teamDetail.badge}
+            score={`${match?.homeScore}x${match?.awayScore}`}
+            loading={matchState.loading}
             /*onHomeTeamClicked={() => history.replace(`/${match.homeTeamId ?? teamId}`)}
-            onAwayTeamClicked={() => history.replace(`/${match.awayTeamId ?? teamId}`)}*/ /> }
+            onAwayTeamClicked={() => history.replace(`/${match.awayTeamId ?? teamId}`)}*/ />
 
-          { matchState.loading && <HeadToHeadShimmer /> }
+          <Spacer marginVertical="18px" />
+
+          <SquadCard 
+            player={playerState.player}
+            loading={playerState.loading} />
         </>
       }
     </>
