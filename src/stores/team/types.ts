@@ -1,4 +1,5 @@
 import { FETCH_TEAM_ERROR, FETCH_TEAM_SUCCESS, FETCH_TEAM_LOADING, FETCH_TEAM_BY_ID_SUCCESS } from "./actions";
+import { League } from "../league/types";
 
 export interface Team {
   id: string;
@@ -17,11 +18,6 @@ export interface Team {
   twitter: string;
   instagram: string;
   youtube: string;
-}
-
-export interface League {
-  id: string;
-  name: string;
 }
 
 export type FetchTeamError = {

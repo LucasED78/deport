@@ -1,9 +1,10 @@
-import { TeamState, TeamActions } from "./types";
+import { TeamState, TeamActions, Team } from "./types";
 import { FETCH_TEAM_LOADING, FETCH_TEAM_ERROR, FETCH_TEAM_SUCCESS, FETCH_TEAM_BY_ID_SUCCESS } from "./actions";
 import { Dispatch } from "react";
 import TeamRepositoryImpl from "../../repositories/team/TeamRepositoryImpl";
 
 import { createStore } from '@reduxjs/toolkit'
+import { fetchLeague } from "../league/store";
 
 const initialState: TeamState = {
   teams: [],
@@ -57,7 +58,11 @@ export const fetchTeamById = async (dispatch: Dispatch<any>, id: string) => {
   dispatch({ type: FETCH_TEAM_LOADING, loading: true });
 
   try {
-    const data = await repository.getById(id);
+    const data = await repository.getById(id) as Team;
+
+    const [ league ] = data.leagues;
+
+    fetchLeague(dispatch, league.id)
 
     dispatch({ type: FETCH_TEAM_BY_ID_SUCCESS, loading: false, teamDetail: data })
   } catch(error) {
