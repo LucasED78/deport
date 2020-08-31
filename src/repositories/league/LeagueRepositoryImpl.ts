@@ -13,7 +13,11 @@ class LeagueRepositoryImpl implements LeagueRepository {
 
       const [ data ] = json['leagues']
 
-      const leagueTable = await this.getTableByLeagueId(leagueId, '2019-2020') as LeagueTable[]
+      let leagueTable = await this.getTableByLeagueId(leagueId, '2019-2020') as LeagueTable[]
+
+      if (typeof leagueTable === 'string') {
+        leagueTable = await this.getTableByLeagueId(leagueId, '2020') as LeagueTable[]
+      }
 
       const league = new LeagueMapper().map(data)
 

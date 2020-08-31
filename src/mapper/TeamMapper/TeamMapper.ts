@@ -1,6 +1,7 @@
 import Mapper from "../Mapper";
 import { Team } from "../../stores/team/types";
 import { League } from "../../stores/league/types";
+import '../../utils/string';
 
 class TeamMapper implements Mapper<Team> {
   parserLimit = 20
@@ -9,7 +10,7 @@ class TeamMapper implements Mapper<Team> {
     return {
       id: data.idTeam,
       name: data.strTeam,
-      fullName: data.strAlternate,
+      fullName: data.strAlternate.isEmpty() ? data.strTeam : data.strAlternate,
       year: data.intFormedYear,
       badge: data.strTeamBadge,
       logo: data.strTeamLogo,

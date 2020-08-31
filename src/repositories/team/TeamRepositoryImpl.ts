@@ -12,7 +12,7 @@ class TeamRepositoryImpl implements TeamRepository {
 
       const { data: json } = response;
 
-      const data = json['teams']
+      const data = json['teams'].filter((team: any) => team.strSport === 'Soccer')
 
       return data.map((team: any) => {
         return this.mapper.map(team)

@@ -21,7 +21,7 @@ class PlayerRepositoryImpl implements PlayerRepository {
       return current;
     })
 
-    console.log(mostLoved);
+    // console.log(mostLoved);
     
 
     return mostLoved;
