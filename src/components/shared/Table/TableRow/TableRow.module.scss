@@ -1,0 +1,9 @@
+@import '../../../../variables';
+
+.table__row {
+  border-bottom: 1px solid $lightgray;
+
+  &:last-of-type {
+    border: none;
+  }
+}

@@ -1,0 +1,12 @@
+.table__cell {
+  padding: 10px 0;
+  font-weight: lighter;
+
+  &--header {
+    font-weight: bold;
+  }
+
+  &:first-of-type {
+    text-align: start;
+  }
+}
