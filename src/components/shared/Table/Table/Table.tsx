@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { v4 as uuid } from 'uuid';
 
 import styles from './Table.module.scss';
 import LeagueTableRow from '../TableRow/TableRow';
@@ -22,7 +23,7 @@ const Table = (props: TableProps) => {
   return (
     <table className={styles.league__table}>
       <thead>
-        <LeagueTableRow>
+        <LeagueTableRow key={uuid()}>
           {headerData.map((data, index) => renderHeaderCells(data, index))}
         </LeagueTableRow>
       </thead>
@@ -30,7 +31,7 @@ const Table = (props: TableProps) => {
       <tbody>
         {bodyData.map((body, position) => {
           return (
-            <LeagueTableRow>
+            <LeagueTableRow key={uuid()}>
               {renderCells(body, position + 1)}
             </LeagueTableRow>
           )

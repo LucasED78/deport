@@ -1,4 +1,6 @@
 import React from 'react';
+import { v4 as uuid } from 'uuid';
+
 import { League } from '../../../../stores/league/types';
 import Table from '../../Table/Table/Table';
 import Card from '../../Card/Card';
@@ -26,6 +28,7 @@ const LeagueTable = ({ league, loading }: { league?: League, loading: boolean })
             bodyData={[...Array(20)].map((_, index) => LeagueMapper.toTable(leagueTable[index]))}
             renderHeaderCells={(data, index) => {
               return <TableCell
+                key={uuid()}
                 width={index == 0 ? '30%' : '7%'}
                 modifier="league__cell">
                 { data }
@@ -33,6 +36,7 @@ const LeagueTable = ({ league, loading }: { league?: League, loading: boolean })
             }}
             renderRowCells={(data, index, position) => {
               return <TableCell
+                key={uuid()}
                 width={index == 0 ? '30%' : '7%'}>
                 { index == 0 ? `${position} ${data}` : data }
             </TableCell>

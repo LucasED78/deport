@@ -14,54 +14,80 @@ import {
 
 import Spacer from '../../shared/Spacer/Spacer';
 import HeadToHead from '../../shared/HeadToHead/HeadToHead/HeadToHead';
-import HeadToHeadShimmer from '../../shared/HeadToHead/HeadToHeadShimmer/HeadToHeadShimmer';
 import TeamDetailShimmer from '../TeamDetailShimmer/TeamDetailShimmer';
 import { PlayerState } from '../../../stores/player/types';
 import SquadCard from '../../squad/SquadCard/SquadCard';
-import SquadCardShimmer from '../../squad/SquadCardShimmer/SquadCardShimmer';
+import Flex from '../../shared/Flex/Flex';
+import { 
+  LeagueState, 
+  LeagueTable as LeagueTableModel 
+} from '../../../stores/league/types';
+import LeagueTable from '../../shared/LeagueTable/LeagueTable/LeagueTable';
 
 export type TeamDetailProps = {
   teamState: TeamState,
   matchState: MatchState,
-  playerState: PlayerState
+  playerState: PlayerState,
+  leagueState: LeagueState
 }
 
 const TeamDetail = (props: TeamDetailProps) => {
-  const { playerState, teamState, matchState } = props
-
+  const { playerState, teamState, matchState, leagueState } = props
   const teamDetail = teamState.teamDetail as Team;
-  const match = matchState.match
+  const match = matchState.match;
+  const league = leagueState.league;
 
   return (
       <>
         { teamDetail && <>
-          <Headline1 
-            title={teamDetail.fullName}
-            margin="0" />
+        <Headline1 
+          title={teamDetail.fullName}
+          margin="0" />
 
-          <Headline2 
-            title={`${teamDetail.year}, ${teamDetail.name}`} 
-            color="#E7E7E7" 
-            fontWeight={500}
-            margin="0" />
+        <Headline2 
+          title={`${teamDetail.year}, ${teamDetail.name}`} 
+          color="#E7E7E7" 
+          fontWeight={500}
+          margin="0" />
 
-          <Spacer marginVertical="22px" />
+        <Spacer marginVertical="22px" />
 
-          { teamState.loading && <TeamDetailShimmer />}
+          <Flex 
+            width="100%"
+            flexDirection="row"
+            justifyContent="flex-start"
+            alignItems="flex-start">
+              
+            <Flex 
+              width="50%"
+              flexDirection="column"
+              justifyContent="flex-start"
+              alignItems="flex-start">
 
-          <HeadToHead 
-            homeLogo={match?.homeTeamLogo ?? teamDetail.badge}
-            awayLogo={match?.awayTeamLogo ?? teamDetail.badge}
-            score={`${match?.homeScore}x${match?.awayScore}`}
-            loading={matchState.loading}
-            /*onHomeTeamClicked={() => history.replace(`/${match.homeTeamId ?? teamId}`)}
-            onAwayTeamClicked={() => history.replace(`/${match.awayTeamId ?? teamId}`)}*/ />
+              { teamState.loading && <TeamDetailShimmer />}
 
-          <Spacer marginVertical="18px" />
+              <HeadToHead 
+                homeLogo={match?.homeTeamLogo ?? teamDetail.badge}
+                awayLogo={match?.awayTeamLogo ?? teamDetail.badge}
+                score={`${match?.homeScore}x${match?.awayScore}`}
+                loading={matchState.loading}
+                /*onHomeTeamClicked={() => history.replace(`/${match.homeTeamId ?? teamId}`)}
+                onAwayTeamClicked={() => history.replace(`/${match.awayTeamId ?? teamId}`)}*/ />
 
-          <SquadCard 
-            player={playerState.player}
-            loading={playerState.loading} />
+              <Spacer marginVertical="18px" />
+
+              <SquadCard 
+                player={playerState.player}
+                loading={playerState.loading} />
+            </Flex>
+
+            <Flex
+              width="50%">
+              <LeagueTable 
+                league={league}
+                loading={leagueState.loading} />
+            </Flex>
+          </Flex>
         </>
       }
     </>

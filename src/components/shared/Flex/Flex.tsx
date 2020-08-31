@@ -8,6 +8,7 @@ export type FlexProps = {
   alignItems?: 'flex-start' | 'flex-end' | 'center' | 'end' | 'stretch';
   flexDirection?: 'row' | 'column';
   flexWrap?: 'wrap' | 'nowrap' | 'wrap-reverse'
+  width?: number | string;
 }
 
 const Flex = (props: FlexProps) => {
@@ -18,7 +19,8 @@ const Flex = (props: FlexProps) => {
       alignItems: props.alignItems, 
       justifyContent: props.justifyContent, 
       flexDirection: props.flexDirection,
-      flexWrap: props.flexWrap
+      flexWrap: props.flexWrap,
+      width: props.width
     }}>
       { props.children }
     </div>

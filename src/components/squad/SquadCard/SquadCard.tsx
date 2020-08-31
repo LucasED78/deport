@@ -6,6 +6,7 @@ import { Headline3, Headline4 } from '../../shared/Headline/Headline';
 import Image from '../../shared/Image/Image';
 import Button from '../../shared/Button/Button';
 import SquadCardShimmer from '../SquadCardShimmer/SquadCardShimmer';
+import Spacer from '../../shared/Spacer/Spacer';
 
 export type SquadCardProps = {
   player?: Player,
@@ -33,6 +34,8 @@ const SquadCard = (props: SquadCardProps) => {
                   width="100px"
                   alt="this is the most loved player image"
                   imageUrl={props.player.avatar ?? ''} />
+
+                <Spacer marginHorizontal="6px" />
 
                 <Flex 
                   flexDirection="column"
