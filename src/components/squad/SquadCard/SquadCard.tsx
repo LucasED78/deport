@@ -30,12 +30,15 @@ const SquadCard = (props: SquadCardProps) => {
               justifyContent="flex-start"
               alignItems="stretch"
               flexWrap="nowrap">
-                <Image
-                  width="100px"
-                  alt="this is the most loved player image"
-                  imageUrl={props.player.avatar ?? ''} />
+                {props.player.avatar && <>
+                  <Image
+                    width="100px"
+                    alt="this is the most loved player image"
+                    imageUrl={props.player.avatar ?? ''} />
+  
+                  <Spacer marginHorizontal="6px" />
+                </>}
 
-                <Spacer marginHorizontal="6px" />
 
                 <Flex 
                   flexDirection="column"
@@ -46,7 +49,10 @@ const SquadCard = (props: SquadCardProps) => {
                     margin="0"
                     fontWeight={500} />
 
-                  <Button modifier="button--bordered">
+                  <Spacer marginVertical="10px" />
+
+                  <Button 
+                    modifier="button--bordered">
                     see players
                   </Button>
                 </Flex>

@@ -15,17 +15,14 @@ export type LeagueTableProps = {
 
 const LeagueTable = ({ league, loading }: { league?: League, loading: boolean }) => {
   const leagueTable = league?.table;
-
-  console.log(loading);
   
-
   return (
     <>
       {league && leagueTable && 
         <Card width="100%">
           <Table
             headerData={[league.name as string, 'PL', 'GP', 'W', 'D', 'L', 'GS', 'SC']}
-            bodyData={[...Array(20)].map((_, index) => LeagueMapper.toTable(leagueTable[index]))}
+            bodyData={[...Array(leagueTable.length)].map((_, index) => LeagueMapper.toTable(leagueTable[index]))}
             renderHeaderCells={(data, index) => {
               return <TableCell
                 key={uuid()}

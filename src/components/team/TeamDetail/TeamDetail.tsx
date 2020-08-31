@@ -1,17 +1,15 @@
 import React from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import { 
   TeamState, 
   Team 
 } from '../../../stores/team/types';
-
 import { MatchState } from '../../../stores/match/types';
-
 import { 
   Headline1, 
   Headline2 
 } from '../../shared/Headline/Headline';
-
 import Spacer from '../../shared/Spacer/Spacer';
 import HeadToHead from '../../shared/HeadToHead/HeadToHead/HeadToHead';
 import TeamDetailShimmer from '../TeamDetailShimmer/TeamDetailShimmer';
@@ -20,7 +18,6 @@ import SquadCard from '../../squad/SquadCard/SquadCard';
 import Flex from '../../shared/Flex/Flex';
 import { 
   LeagueState, 
-  LeagueTable as LeagueTableModel 
 } from '../../../stores/league/types';
 import LeagueTable from '../../shared/LeagueTable/LeagueTable/LeagueTable';
 
@@ -36,6 +33,8 @@ const TeamDetail = (props: TeamDetailProps) => {
   const teamDetail = teamState.teamDetail as Team;
   const match = matchState.match;
   const league = leagueState.league;
+
+  const isMediumScreen = useMediaQuery({ maxWidth: '900px' });
 
   return (
       <>
@@ -59,10 +58,10 @@ const TeamDetail = (props: TeamDetailProps) => {
             alignItems="flex-start">
               
             <Flex 
-              width="50%"
+              width={ isMediumScreen ? '100%' : '50%' }
               flexDirection="column"
               justifyContent="flex-start"
-              alignItems="flex-start">
+              alignItems={isMediumScreen ? 'center' : 'flex-start'}>
 
               { teamState.loading && <TeamDetailShimmer />}
 
@@ -79,10 +78,13 @@ const TeamDetail = (props: TeamDetailProps) => {
               <SquadCard 
                 player={playerState.player}
                 loading={playerState.loading} />
+
+              { isMediumScreen ? <Spacer marginVertical="16px" /> : null }
             </Flex>
 
             <Flex
-              width="50%">
+              width={isMediumScreen ? '100%' : '50%'}
+              alignItems="center">
               <LeagueTable 
                 league={league}
                 loading={leagueState.loading} />
