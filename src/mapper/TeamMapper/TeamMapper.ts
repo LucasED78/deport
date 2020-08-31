@@ -1,5 +1,6 @@
 import Mapper from "../Mapper";
-import { Team, League } from "../../stores/team/types";
+import { Team } from "../../stores/team/types";
+import { League } from "../../stores/league/types";
 
 class TeamMapper implements Mapper<Team> {
   parserLimit = 20
