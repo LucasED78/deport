@@ -26,7 +26,7 @@ const LeagueTable = ({ league, loading }: { league?: League, loading: boolean })
             renderHeaderCells={(data, index) => {
               return <TableCell
                 key={uuid()}
-                width={index == 0 ? '30%' : '7%'}
+                width={index === 0 ? '30%' : '7%'}
                 modifier="league__cell">
                 { data }
               </TableCell>
@@ -34,8 +34,8 @@ const LeagueTable = ({ league, loading }: { league?: League, loading: boolean })
             renderRowCells={(data, index, position) => {
               return <TableCell
                 key={uuid()}
-                width={index == 0 ? '30%' : '7%'}>
-                { index == 0 ? `${position} ${data}` : data }
+                width={index === 0 ? '30%' : '7%'}>
+                { index === 0 ? `${position} ${data}` : data }
             </TableCell>
           }}/>
         </Card>}
