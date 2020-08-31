@@ -8,4 +8,12 @@ String.prototype.limit = function(quantity: number): string {
   return `${limited}...`;
 }
 
+String.prototype.isEmpty = function(): boolean {
+  if (this === '' || this === 'undefined' || this === null) {
+    return true;
+  }
+
+  return false;
+}
+
 export {}
