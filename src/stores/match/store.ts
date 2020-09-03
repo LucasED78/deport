@@ -17,6 +17,7 @@ const matchReducer = (state = initialState, actions: MatchActions): MatchState =
     case MATCH_FETCHED_WITH_SUCCESS:
       return {
         ...state,
+        error: undefined,
         match: actions.match,
         loading: actions.loading
       }
@@ -29,6 +30,7 @@ const matchReducer = (state = initialState, actions: MatchActions): MatchState =
     case MATCH_LOADING:
       return {
         ...state,
+        error: undefined,
         loading: actions.loading
       }
     default:

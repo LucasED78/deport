@@ -14,6 +14,7 @@ const leagueReducer = (state = initialState, actions: LeagueActions): LeagueStat
     case FETCH_LEAGUE_SUCCESS:
       return {
         ...state,
+        error: undefined,
         league: actions.league,
         loading: actions.loading,
       }
@@ -26,6 +27,7 @@ const leagueReducer = (state = initialState, actions: LeagueActions): LeagueStat
     case LEAGUE_LOADING:
       return {
         ...state,
+        error: undefined,
         loading: actions.loading
       }
     default:

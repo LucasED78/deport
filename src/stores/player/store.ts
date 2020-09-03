@@ -14,6 +14,7 @@ const playerReducer = (state = initialState, actions: PlayerAction): PlayerState
     case FETCH_PLAYER_SUCCESS:
       return {
         ...state,
+        error: undefined,
         loading: actions.loading,
         player: actions.player
       }
@@ -27,6 +28,7 @@ const playerReducer = (state = initialState, actions: PlayerAction): PlayerState
     case PLAYER_LOADING:
       return {
         ...state,
+        error: undefined,
         loading: actions.loading
       }
     default:

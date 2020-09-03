@@ -13,6 +13,7 @@ import TeamDetail from '../../team/TeamDetail/TeamDetail';
 import { fetchLovedPlayer } from '../../../stores/player/store';
 import { PlayerState } from '../../../stores/player/types';
 import { LeagueState } from '../../../stores/league/types';
+import ErrorScreen from '../../shared/ErrorScreen/ErrorScreen';
 
 const TeamContainer = (props: any) => {  
   const { teamId } = useParams();
@@ -22,22 +23,31 @@ const TeamContainer = (props: any) => {
     : { team: TeamState, match: MatchState, player: PlayerState, league: LeagueState } = props;
 
   useEffect(() => {
+    load();
+  }, [])
+
+  const hasError = teamState.error || matchState.error || playerState.error || leagueState.error;  
+
+  const load = () => {
     fetchTeamById(dispatch, teamId)
 
     fetchMatch(dispatch, teamId)
 
     fetchLovedPlayer(dispatch, teamId)
-  }, [])
+  }
+  
 
   return (
     <Container 
       alignItems="flex-start"
     >
-      <TeamDetail 
+      { !hasError && <TeamDetail 
         teamState={teamState} 
         matchState={matchState}
         playerState={playerState}
-        leagueState={leagueState} />
+        leagueState={leagueState} /> }
+
+      { hasError && <ErrorScreen onTryAgain={_ => load()} /> }
     </Container>
   )
 }

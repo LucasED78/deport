@@ -24,6 +24,7 @@ const teamReducer = (state = initialState, action: TeamActions): TeamState => {
       return {
         ...state,
         loading: action.loading,
+        error: undefined,
         teamDetail: action.teamDetail
       }
     case FETCH_TEAM_ERROR:
@@ -35,6 +36,7 @@ const teamReducer = (state = initialState, action: TeamActions): TeamState => {
     case FETCH_TEAM_LOADING:
       return {
         teams: [],
+        error: undefined,
         loading: action.loading,
       }
     default:
